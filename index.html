@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Neha Panchbhai · Mathematics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink:        #0f0e17;
+      --paper:      #faf8f2;
+      --cream:      #f0eddf;
+      --gold:       #d4900a;
+      --gold-light: #f5c842;
+      --red:        #c0392b;
+      --teal:       #1a6b6b;
+      --teal-light: #e8f4f4;
+      --rule:       #d1c9b0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 3.5rem 2rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '∑';
+      position: absolute;
+      right: 4%;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(8rem, 22vw, 18rem);
+      font-weight: 900;
+      color: rgba(255,255,255,0.04);
+      pointer-events: none;
+      line-height: 1;
+    }
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .header-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--ink);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.25em 0.9em;
+      border-radius: 2px;
+      margin-bottom: 1.2rem;
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      max-width: 640px;
+    }
+    header h1 span { color: var(--gold-light); }
+    .header-tagline {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: rgba(250,248,242,0.6);
+      max-width: 520px;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+    .header-meta {
+      margin-top: 1.6rem;
+      font-size: 0.75rem;
+      color: rgba(250,248,242,0.35);
+      letter-spacing: 0.08em;
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* ── Nav strip ── */
+    nav {
+      background: var(--cream);
+      border-bottom: 1px solid var(--rule);
+    }
+    nav ul {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      list-style: none;
+      display: flex;
+      gap: 0;
+    }
+    nav a {
+      display: block;
+      padding: 0.85rem 1.2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    nav a:hover {
+      color: var(--teal);
+      border-bottom-color: var(--teal);
+    }
+
+    /* ── Main layout ── */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 6rem;
+    }
+
+    /* ── Section label ── */
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    section > h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 1.6rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--rule);
+    }
+    section { margin-bottom: 4rem; }
+
+    /* ── About blurb ── */
+    .about-text {
+      max-width: 680px;
+      font-size: 1.02rem;
+      line-height: 1.8;
+      color: #333;
+    }
+
+    /* ── Course cards ── */
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.4rem;
+    }
+    .course-card {
+      background: #fff;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 1.6rem 1.8rem;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .course-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.09);
+      transform: translateY(-2px);
+    }
+    .course-card::after {
+      content: attr(data-symbol);
+      position: absolute;
+      bottom: -0.6rem;
+      right: 1rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      font-weight: 900;
+      color: var(--teal-light);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .course-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: var(--teal-light);
+      color: var(--teal);
+      padding: 0.2em 0.7em;
+      border-radius: 2px;
+      display: inline-block;
+      margin-bottom: 0.9rem;
+    }
+    .course-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: var(--ink);
+    }
+    .course-card p {
+      font-size: 0.88rem;
+      color: #555;
+      line-height: 1.55;
+      margin-bottom: 1.2rem;
+    }
+    .course-topics {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .course-topics li {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      background: var(--cream);
+      border: 1px solid var(--rule);
+      padding: 0.18em 0.6em;
+      border-radius: 2px;
+      color: #666;
+    }
+    .course-link-row {
+      margin-top: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: var(--teal);
+      font-weight: 500;
+    }
+    .course-link-row svg {
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .course-card:hover .course-link-row svg {
+      transform: translateX(3px);
+    }
+
+    /* ── Placeholder card (coming soon) ── */
+    .course-card.placeholder {
+      border-style: dashed;
+      background: transparent;
+      pointer-events: none;
+      opacity: 0.45;
+    }
+    .course-card.placeholder::after { display: none; }
+    .placeholder-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #aaa;
+      text-align: center;
+      padding: 2.5rem 0;
+    }
+
+    /* ── Presentations section ── */
+    .presentations-note {
+      font-size: 0.9rem;
+      color: #888;
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.04em;
+      padding: 1.8rem;
+      background: var(--cream);
+      border-left: 3px solid var(--rule);
+      border-radius: 0 6px 6px 0;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--ink);
+      color: rgba(250,248,242,0.4);
+      text-align: center;
+      padding: 2rem 1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+    }
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header>
+    <div class="header-inner">
+      <div class="header-badge">Mathematics · Ph.D.</div>
+      <h1>Dr. Neha <span>Panchbhai</span></h1>
+      <p class="header-tagline">
+        Research scientist and mathematics educator — bringing doctoral-level
+        analytical rigour from the laboratory to the classroom.
+      </p>
+      <p class="header-meta">Ph.D. Cell &amp; Molecular Biology · Georgia State University &nbsp;·&nbsp; Mathematics Teacher · Richmond Public Schools</p>
+    </div>
+  </header>
+
+  <!-- ── Navigation ── -->
+  <nav>
+    <ul>
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#presentations">Presentations</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- ── Courses ── -->
+    <section id="courses">
+      <p class="section-label">Curriculum</p>
+      <h2>Courses</h2>
+
+      <div class="course-grid">
+
+        <!-- Math 101 -->
+        <a class="course-card" href="./math101/laws-of-exponents.html" data-symbol="x²">
+          <span class="course-tag">Math 101</span>
+          <h3>Algebra 1</h3>
+          <p>Foundational algebra concepts — from expressions and equations to exponent rules and beyond.</p>
+          <ul class="course-topics">
+            <li>Laws of Exponents</li>
+            <li>More coming soon</li>
+          </ul>
+          <div class="course-link-row">
+            View course materials
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+
+        <!-- Placeholder for future course -->
+        <div class="course-card placeholder">
+          <p class="placeholder-label">More courses<br>coming soon</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Presentations ── -->
+    <section id="presentations">
+      <p class="section-label">Slides & Talks</p>
+      <h2>Presentations</h2>
+      <p class="presentations-note">
+        Lecture slides and presentation decks will appear here as they are added.
+      </p>
+    </section>
+
+    <!-- ── About ── -->
+    <section id="about">
+      <p class="section-label">Background</p>
+      <h2>About</h2>
+      <p class="about-text">
+        Dr. Neha Panchbhai holds a Ph.D. in Cell and Molecular Biology from Georgia State
+        University, where her doctoral research centred on cancer genomics and cellular
+        protein–protein interactions — work demanding the precise, quantitative thinking
+        that underpins rigorous mathematics education. She complemented her research career
+        with nearly three years as a Teaching Assistant at Georgia State, developing her
+        ability to make complex concepts accessible to students at every level.
+      </p>
+      <p class="about-text" style="margin-top:1.2rem;">
+        Before moving into the classroom full-time, Dr. Panchbhai applied her analytical
+        expertise as a Data Analyst, working with large-scale clinical datasets using SQL,
+        Python, and SAS — deepening her appreciation for the real-world power of
+        mathematical reasoning.
+      </p>
+      <p class="about-text" style="margin-top:1.2rem;">
+        She currently teaches Mathematics at Richmond Public Schools in Virginia, bringing
+        the precision and curiosity of a research scientist to every lesson. This site
+        gathers her course materials, study guides, and lecture notes — written to be
+        clear, rigorous, and self-contained.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <p>Dr. Neha Panchbhai &nbsp;·&nbsp; Mathematics</p>
+  </footer>
+
+</body>
+</html>
