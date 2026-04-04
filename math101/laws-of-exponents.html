@@ -92,9 +92,69 @@
   main > section:nth-child(5) { animation-delay: 0.33s; }
   main > section:nth-child(6) { animation-delay: 0.40s; }
   main > section:nth-child(7) { animation-delay: 0.47s; }
+
+  /* ── Skip link ── */
+  .skip-link { position:absolute; top:-100%; left:1rem; background:var(--gold); color:var(--ink); font-family:'DM Mono',monospace; font-size:0.75rem; font-weight:500; padding:0.5em 1em; border-radius:0 0 4px 4px; text-decoration:none; z-index:200; transition:top 0.15s; }
+  .skip-link:focus { top:0; }
+
+  /* ── Site nav ── */
+  #site-nav { background:var(--cream); border-bottom:1px solid var(--rule); position:sticky; top:0; z-index:100; }
+  .nav-inner { max-width:900px; margin:0 auto; padding:0 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+  .nav-home { font-family:'DM Mono',monospace; font-size:0.78rem; font-weight:500; letter-spacing:0.08em; color:var(--ink); text-decoration:none; padding:0.9rem 0; white-space:nowrap; flex-shrink:0; transition:color 0.2s; }
+  .nav-home:hover { color:var(--teal); }
+  #nav-links { list-style:none; display:flex; gap:0; margin:0; }
+  #nav-links a { display:block; padding:0.85rem 1.1rem; font-family:'DM Mono',monospace; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink); text-decoration:none; border-bottom:2px solid transparent; transition:color 0.2s,border-color 0.2s; white-space:nowrap; }
+  #nav-links a:hover, #nav-links a[aria-current="page"] { color:var(--teal); border-bottom-color:var(--teal); }
+  .nav-toggle { display:none; flex-direction:column; justify-content:center; align-items:center; gap:5px; width:36px; height:36px; background:none; border:none; cursor:pointer; padding:4px; flex-shrink:0; }
+  .nav-toggle span { display:block; width:22px; height:2px; background:var(--ink); border-radius:2px; transition:transform 0.25s,opacity 0.25s; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity:0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+  @media (max-width:600px) {
+    .nav-toggle { display:flex; }
+    #nav-links { display:none; flex-direction:column; position:absolute; top:100%; left:0; right:0; background:var(--cream); border-bottom:1px solid var(--rule); padding:0.5rem 0; }
+    #nav-links.open { display:flex; }
+    #nav-links a { padding:0.75rem 1.5rem; border-bottom:none; border-left:2px solid transparent; }
+    #nav-links a:hover, #nav-links a[aria-current="page"] { border-bottom:none; border-left-color:var(--teal); background:rgba(26,107,107,0.05); }
+  }
+
+  /* ── Breadcrumb ── */
+  .breadcrumb { background:var(--paper); border-bottom:1px solid var(--rule); }
+  .breadcrumb ol { max-width:900px; margin:0 auto; padding:0.55rem 1.5rem; list-style:none; display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap; }
+  .breadcrumb li { font-family:'DM Mono',monospace; font-size:0.67rem; letter-spacing:0.08em; color:#888; display:flex; align-items:center; gap:0.4rem; }
+  .breadcrumb li + li::before { content:'›'; color:#bbb; }
+  .breadcrumb a { color:var(--teal); text-decoration:none; }
+  .breadcrumb a:hover { text-decoration:underline; }
+  .breadcrumb [aria-current="page"] { color:var(--ink); font-weight:500; }
 </style>
 </head>
 <body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- ── Site navigation ── -->
+  <nav id="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-home">Dr. Neha Panchbhai</a>
+      <button class="nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+      <ul id="nav-links" role="list">
+        <li><a href="../index.html#courses" aria-current="page">Courses</a></li>
+        <li><a href="../index.html#presentations">Presentations</a></li>
+        <li><a href="../index.html#about">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── Breadcrumb ── -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#courses">Math 101 · Algebra 1</a></li>
+      <li><span aria-current="page">Laws of Exponents</span></li>
+    </ol>
+  </nav>
 
 <header>
   <div class="header-badge">Virginia SOL · A.EO.3 · Algebra 1</div>
@@ -102,7 +162,7 @@
   <div class="header-meta">Study Guide &nbsp;·&nbsp; Expressions &amp; Operations &nbsp;·&nbsp; 2023 Standards</div>
 </header>
 
-<main>
+<main id="main-content">
 
   <!-- 1. Vocabulary -->
   <section>
@@ -562,5 +622,22 @@
 
 </main>
 
+  <script>
+    const toggle = document.querySelector('.nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      toggle.setAttribute('aria-label', expanded ? 'Open navigation menu' : 'Close navigation menu');
+      navLinks.classList.toggle('open', !expanded);
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open navigation menu');
+        navLinks.classList.remove('open');
+      });
+    });
+  </script>
 
 </body></html>
