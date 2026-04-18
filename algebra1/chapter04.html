@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ch 4: Linear Equations & Graphing — Algebra 1 SOL</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap');
+
+  :root{
+    --radius:12px;
+    --shadow:0 4px 20px rgba(0,0,0,.10);
+    --shadow-lg:0 8px 32px rgba(0,0,0,.14);
+    --desmos:#6A1B9A;
+    --desmos-bg:#ede7f6;
+    --yellow:#FFF176;
+    --dgray:#2d2d2d;
+    --lgray:#f4f5f7;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Nunito',sans-serif;background:#eef0f4;color:var(--dgray);overflow-x:hidden}
+  a{text-decoration:none;color:inherit}
+
+  /* ── Top nav bar ── */
+  #topbar{
+    position:sticky;top:0;z-index:100;
+    background:rgba(18,18,30,.96);backdrop-filter:blur(10px);
+    border-bottom:2px solid rgba(255,255,255,.08);
+    display:flex;align-items:center;height:56px;
+    padding:0 16px;gap:3px;overflow-x:auto;scrollbar-width:none;
+  }
+  #topbar::-webkit-scrollbar{display:none}
+  .nb{
+    flex-shrink:0;display:flex;align-items:center;gap:5px;
+    padding:6px 11px;border-radius:7px;
+    font-size:11.5px;font-weight:700;color:rgba(255,255,255,.55);
+    cursor:pointer;transition:all .18s;white-space:nowrap;
+    border:1.5px solid transparent;
+  }
+  .nb:hover{color:#fff;background:rgba(255,255,255,.1)}
+  .nb.cur{color:#fff;border-color:currentColor;background:rgba(255,255,255,.07)}
+  .nb-dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex-shrink:0}
+
+  /* ── Hero band ── */
+  .hero{
+    padding:40px 32px 30px;
+    position:relative;overflow:hidden;
+    background:linear-gradient(135deg, var(--c1) 0%, var(--c2) 100%);
+  }
+  .hero::after{
+    content:attr(data-bg);
+    position:absolute;right:24px;top:50%;transform:translateY(-50%);
+    font-size:140px;font-weight:900;color:rgba(255,255,255,.07);
+    font-family:'Space Mono',monospace;line-height:1;pointer-events:none;
+    white-space:nowrap;
+  }
+  .hero-tag{
+    display:inline-block;
+    background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.32);
+    border-radius:4px;padding:3px 10px;font-size:10px;font-weight:800;
+    letter-spacing:1.5px;text-transform:uppercase;color:#fff;margin-bottom:8px;
+  }
+  .hero h1{color:#fff;font-size:clamp(22px,4vw,34px);font-weight:900;line-height:1.15;margin-bottom:4px}
+  .hero p{color:rgba(255,255,255,.75);font-size:13px;font-weight:600}
+  .hero-subtitle{
+    margin-top:10px;
+    background:rgba(0,0,0,.25);
+    display:inline-block;padding:3px 14px;border-radius:4px;
+    font-size:12px;color:rgba(255,255,255,.8);font-style:italic;
+  }
+
+  /* ── Page wrapper ── */
+  .wrap{max-width:960px;margin:0 auto;padding:28px 20px 72px;display:flex;flex-direction:column;gap:18px}
+
+  /* ── Content box ── */
+  .cbox{
+    background:#fff;border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    border-left:5px solid var(--accent);
+    padding:18px 20px 16px;
+    position:relative;
+  }
+  .cbox h3{
+    font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1px;
+    color:var(--accent);margin-bottom:10px;display:flex;align-items:center;gap:6px;
+  }
+  .cbox h3::after{content:'';flex:1;height:1px;background:var(--accent);opacity:.25;margin-left:4px}
+  .cbox ul{list-style:none;display:flex;flex-direction:column;gap:5px}
+  .cbox ul li{font-size:14px;line-height:1.6;padding-left:16px;position:relative}
+  .cbox ul li::before{content:'›';position:absolute;left:0;color:var(--accent);font-weight:900}
+  .cbox p{font-size:14px;line-height:1.6}
+
+  /* ── Card grid ── */
+  .grid{display:grid;gap:13px}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+
+  .card{border-radius:var(--radius);padding:16px;color:#fff;position:relative;overflow:hidden}
+  .card::before{
+    content:'';position:absolute;inset:0;
+    background:rgba(255,255,255,.04);
+  }
+  .card h4{font-size:13px;font-weight:800;margin-bottom:9px;line-height:1.3}
+  .card .expr{
+    background:rgba(255,255,255,.2);border-radius:8px;
+    padding:8px 12px;font-family:'Space Mono',monospace;
+    font-size:16px;font-weight:700;margin:8px 0;text-align:center;
+  }
+  .card ul{list-style:none;font-size:12.5px;line-height:1.65;opacity:.94}
+  .card ul li{padding-left:11px;position:relative}
+  .card ul li::before{content:'›';position:absolute;left:0;font-weight:900}
+
+  /* ── Formula banner ── */
+  .formula-banner{
+    border-radius:var(--radius);padding:22px 28px;text-align:center;
+    background:linear-gradient(135deg,#e8eaf6,#c5cae9);
+    box-shadow:var(--shadow);
+  }
+  .formula-big{
+    font-family:'Space Mono',monospace;font-size:clamp(28px,5vw,48px);
+    font-weight:700;letter-spacing:5px;color:var(--accent);margin-bottom:12px;
+  }
+  .formula-labels{display:flex;justify-content:center;gap:28px;flex-wrap:wrap}
+  .fl{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+
+  /* ── Callout ── */
+  .callout{
+    border-radius:var(--radius);padding:16px 20px;
+    display:flex;align-items:flex-start;gap:14px;
+    box-shadow:var(--shadow);
+  }
+  .callout-icon{font-size:28px;flex-shrink:0;line-height:1}
+  .callout-body h4{font-size:14px;font-weight:800;margin-bottom:5px}
+  .callout-body ul{list-style:none;font-size:13.5px;line-height:1.65}
+  .callout-body ul li{padding-left:14px;position:relative}
+  .callout-body ul li::before{content:'•';position:absolute;left:0;font-weight:900}
+  .callout-body p{font-size:13.5px;line-height:1.65}
+
+  /* ── Desmos box ── */
+  .desmos{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg)}
+  .desmos-head{
+    background:var(--desmos);padding:12px 18px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .desmos-head h3{color:#fff;font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+  .desmos-head span{
+    background:rgba(255,255,255,.2);color:#fff;
+    font-size:10px;font-weight:700;border-radius:4px;padding:2px 8px;
+  }
+  .desmos-cols{display:grid;grid-template-columns:repeat(3,1fr);background:rgba(106,27,154,.12);gap:1px}
+  .dcol{background:var(--desmos-bg);padding:15px 14px}
+  .dcol-badge{
+    display:inline-block;font-size:10.5px;font-weight:800;
+    text-transform:uppercase;letter-spacing:.6px;
+    padding:4px 10px;border-radius:4px;color:#fff;margin-bottom:10px;
+  }
+  .dcol ul{list-style:none;font-size:12.5px;line-height:1.75;color:#333}
+  .dcol ul li{padding-left:14px;position:relative}
+  .dcol ul li::before{content:'▸';position:absolute;left:0;font-size:9px;color:var(--desmos);font-weight:900;top:3px}
+  .dcol ul li strong{color:var(--desmos)}
+  .mono{font-family:'Space Mono',monospace;font-size:.85em;background:#f0e6ff;padding:1px 5px;border-radius:3px}
+
+  /* ── Remember box ── */
+  .remember{
+    border-radius:var(--radius);padding:18px 22px;
+    color:#fff;position:relative;overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  .remember::after{
+    content:'⭐';position:absolute;right:18px;top:50%;transform:translateY(-50%);
+    font-size:72px;opacity:.10;pointer-events:none;
+  }
+  .remember h3{
+    font-size:11px;font-weight:800;text-transform:uppercase;
+    letter-spacing:1.5px;margin-bottom:9px;opacity:.85;
+  }
+  .remember ul{list-style:none}
+  .remember ul li{
+    font-size:13.5px;line-height:1.65;padding-left:18px;
+    position:relative;margin-bottom:3px;
+  }
+  .remember ul li::before{content:'✓';position:absolute;left:0;font-weight:900;opacity:.8}
+
+  /* ── Table ── */
+  .ctable{width:100%;border-collapse:collapse;border-radius:var(--radius);overflow:hidden;font-size:13px;box-shadow:var(--shadow)}
+  .ctable th{padding:11px 13px;color:#fff;font-weight:800;font-size:11.5px;text-transform:uppercase;letter-spacing:.5px}
+  .ctable td{padding:10px 13px;border-bottom:1px solid #eee;font-weight:600}
+  .ctable tr:last-child td{border-bottom:none}
+  .ctable tr:nth-child(odd) td{background:#f8f9fa}
+
+  /* ── Number lines ── */
+  .nl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+  .nl-card{background:#fff;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow);text-align:center}
+  .nl-label{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;margin-bottom:8px}
+  .nl-card svg{width:100%;overflow:visible}
+
+  /* ── Graph cards ── */
+  .gcards{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+  .gcard{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+  .gcard-head{padding:9px 13px;font-size:11.5px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.7px}
+  .gcard-body{background:#fafafa;padding:10px;display:flex;align-items:center;justify-content:center}
+
+  /* ── Two/three col ── */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  .three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px}
+
+  /* ── Footer ── */
+  footer{
+    position:fixed;bottom:0;left:0;right:0;
+    background:rgba(18,18,30,.96);backdrop-filter:blur(8px);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 24px;height:40px;
+    border-top:1px solid rgba(255,255,255,.08);
+    font-size:11.5px;color:rgba(255,255,255,.6);font-weight:600;
+  }
+  footer .fp-nav{display:flex;gap:4px}
+  footer a{
+    padding:4px 12px;border-radius:6px;background:rgba(255,255,255,.08);
+    color:rgba(255,255,255,.7);font-size:11px;font-weight:700;
+    transition:all .15s;
+  }
+  footer a:hover{background:rgba(255,255,255,.18);color:#fff}
+  footer a.disabled{opacity:.3;pointer-events:none}
+
+  /* ── Responsive ── */
+  @media(max-width:720px){
+    .g4,.g3{grid-template-columns:repeat(2,1fr)}
+    .desmos-cols,.nl-grid,.gcards,.two-col,.three-col{grid-template-columns:1fr}
+    .hero{padding:28px 18px 22px}
+    .wrap{padding:18px 14px 64px}
+    .formula-big{font-size:26px}
+  }
+  @media(max-width:440px){
+    .g4,.g3,.g2{grid-template-columns:1fr}
+  }
+
+  :root{--accent:#7B1FA2;--c1:#7B1FA2;--c2:#4a148c}
+</style>
+</head>
+<body>
+<nav id="topbar"><a class="nb" style="color:#1A73E8" href="chapter01.html"><span class="nb-dot"></span>1. Words → Algebra</a><a class="nb" style="color:#0F9D58" href="chapter02.html"><span class="nb-dot"></span>2. Laws of Exponen…</a><a class="nb" style="color:#F4511E" href="chapter03.html"><span class="nb-dot"></span>3. Polynomials</a><a class="nb cur" style="color:#7B1FA2" href="chapter04.html"><span class="nb-dot"></span>4. Linear Equations</a><a class="nb" style="color:#00897B" href="chapter05.html"><span class="nb-dot"></span>5. Literal Equatio…</a><a class="nb" style="color:#D32F2F" href="chapter06.html"><span class="nb-dot"></span>6. Quadratic Expre…</a><a class="nb" style="color:#3949AB" href="chapter07.html"><span class="nb-dot"></span>7. Slope</a><a class="nb" style="color:#FF8F00" href="chapter08.html"><span class="nb-dot"></span>8. Domain</a><a class="nb" style="color:#E91E63" href="chapter09.html"><span class="nb-dot"></span>9. Functions</a><a class="nb" style="color:#00695C" href="chapter10.html"><span class="nb-dot"></span>10. Inequalities</a></nav>
+<div class="hero" data-bg="04">
+  <div class="hero-tag">Chapter 4 · Virginia SOL Algebra 1</div>
+  <h1>Linear Equations & Graphing</h1>
+  <p>Slope, equations, graphing lines</p>
+</div>
+<div class="wrap">
+<div class="grid g2">
+  <div class="cbox" style="--accent:#7B1FA2;background:#ede7f6">
+  <h3>📐 Slope Formula</h3>
+  <ul><li>slope (m) = RISE / RUN = <span class='mono'>(y₂−y₁) / (x₂−x₁)</span></li><li>+ slope = goes up hill &nbsp;|&nbsp; − slope = goes downhill</li><li>slope = 0 = flat line &nbsp;|&nbsp; undefined = vertical line</li></ul>
+</div>
+  <div class="cbox" style="--accent:#7B1FA2;background:#f3e5f5">
+  <h3>📝 3 Forms of a Line</h3>
+  <ul><li>Slope-Intercept: <span class='mono'>y = mx + b</span> (best for graphing!)</li><li>Standard: <span class='mono'>Ax + By = C</span></li><li>Point-Slope: <span class='mono'>y − y₁ = m(x − x₁)</span></li></ul>
+</div>
+</div><div class="grid g3"><div class="card" style="background:#1A73E8">
+  <h4>📍 Given 2 Points → Equation</h4>
+  <ul><li>1. slope: m = (y₂−y₁)/(x₂−x₁)</li><li>2. plug in: y−y₁ = m(x−x₁)</li><li>3. simplify to y = mx + b</li><li>e.g. Points (2,3) and (4,7):</li><li>m = (7−3)/(4−2) = 4/2 = 2</li><li>y−3=2(x−2) → y = 2x − 1</li></ul>
+</div><div class="card" style="background:#0F9D58">
+  <h4>📈 Equation → Find Points</h4>
+  <ul><li>1. Make table: x = 0, 1, 2, −1</li><li>2. Plug each x in, solve for y</li><li>e.g. y = 3x + 2:</li><li>x=0 → y=2  |  x=1 → y=5</li><li>x=2 → y=8  |  x=−1 → y=−1</li><li>Plot each (x,y) on graph!</li></ul>
+</div><div class="card" style="background:#F4511E">
+  <h4>🔀 Parallel &amp; Perpendicular</h4>
+  <ul><li>PARALLEL: SAME slope, diff y-int</li><li>y=2x+1 and y=2x−5 (both m=2)</li><li>PERPENDICULAR: FLIP &amp; CHANGE SIGN</li><li>m=3 → perp. slope = −1/3</li><li>m=2/5 → perp. slope = −5/2</li><li>"Negative reciprocal"</li></ul>
+</div></div><div class="cbox" style="--accent:#3949AB;background:#e8eaf6">
+  <h3>📌 y-intercept &amp; x-intercept (zero)</h3>
+  <ul><li><strong>Y-INTERCEPT:</strong> set x = 0, solve for y → point (0, y). For y=2x+4: y=4 → point <span class='mono'>(0, 4)</span></li><li><strong>X-INTERCEPT (zero):</strong> set y = 0, solve for x → point (x, 0). For y=2x+4: 0=2x+4 → x=−2 → point <span class='mono'>(−2, 0)</span></li><li>On DESMOS: click where line touches each axis to read the exact coordinates!</li></ul>
+</div><div class="desmos">
+  <div class="desmos-head">
+    <h3>🔢 Desmos Strategies</h3>
+    <span>3 Ways to Get the Answer!</span>
+  </div>
+  <div class="desmos-cols">
+    <div class="dcol">
+  <span class="dcol-badge" style="background:#1A73E8">Strategy 1: Evaluate / Find a Value</span>
+  <ul><li>CAPITAL letters to evaluate</li><li>Type <span class='mono'>M*X + B</span></li><li>Add sliders M, X, and B</li><li>Set X to your x-value</li><li>Desmos gives you the y-value!</li><li>Use to find any point on line.</li></ul>
+</div>
+    <div class="dcol">
+  <span class="dcol-badge" style="background:#0F9D58">Strategy 2: Graph / Visualize</span>
+  <ul><li>Type <span class='mono'>y = 2*x + 3</span> (lowercase)</li><li>Desmos draws the line instantly!</li><li>Click y-axis crossing = y-intercept</li><li>Click x-axis crossing = x-intercept</li><li>Count rise/run between points</li><li>= verify slope calculation!</li></ul>
+</div>
+    <div class="dcol">
+  <span class="dcol-badge" style="background:#F4511E">Strategy 3: Generate Table</span>
+  <ul><li>Type <span class='mono'>y = 2*x + 3</span> → click Table</li><li>x: 0,1,2,3 → y: 3,5,7,9</li><li>y increases by 2 each step</li><li>That constant change = <strong>SLOPE!</strong></li><li>x=0 row → y=3 = y-intercept!</li><li>Table reveals slope AND intercept!</li></ul>
+</div>
+  </div>
+</div><div class="remember" style="background:#7B1FA2">
+  <h3>Remember This!</h3>
+  <ul><li>In y = mx + b: m = slope (steepness) and b = y-intercept (where line hits y-axis). Memorize this!</li><li>To find y-intercept: set x = 0. &nbsp; To find x-intercept (zero): set y = 0 and solve for x.</li><li>Vertical line: x = 3 (undefined slope) &nbsp;|&nbsp; Horizontal line: y = 3 (slope = 0)</li></ul>
+</div>
+</div>
+<footer>
+  <span style="color:#7B1FA2;font-weight:700">Chapter 4 of 10</span>
+  <div class="fp-nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="chapter03.html" class="">← Prev</a>
+    <a href="chapter05.html" class="">Next →</a>
+  </div>
+  <span>Virginia SOL Algebra 1</span>
+</footer>
+</body>
+</html>
