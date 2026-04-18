@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ch 1: Words → Algebra — Algebra 1 SOL</title>
+<title>Ch 5: Literal Equations — Algebra 1 SOL</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap');
 
@@ -24,7 +24,7 @@
 
   /* ── Top nav bar ── */
   #topbar{
-    position:sticky;top:0;z-index:100;
+    position:sticky;top:48px;z-index:100;
     background:rgba(18,18,30,.96);backdrop-filter:blur(10px);
     border-bottom:2px solid rgba(255,255,255,.08);
     display:flex;align-items:center;height:56px;
@@ -236,35 +236,103 @@
     .g4,.g3,.g2{grid-template-columns:1fr}
   }
 
-  :root{--accent:#1A73E8;--c1:#1A73E8;--c2:#0d47a1}
+  :root{--accent:#00897B;--c1:#00897B;--c2:#004d40}
+
+  /* ── Site-wide nav ── */
+  .skip-link{position:absolute;top:-100%;left:1rem;background:#d4900a;color:#0f0e17;font-family:'DM Mono',monospace;font-size:.75rem;font-weight:500;padding:.5em 1em;border-radius:0 0 4px 4px;text-decoration:none;z-index:300;transition:top .15s}
+  .skip-link:focus{top:0}
+  #site-nav{background:#f0eddf;border-bottom:1px solid #d1c9b0;position:sticky;top:0;z-index:200}
+  .nav-inner{max-width:900px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .nav-home{font-family:'DM Mono',monospace;font-size:.78rem;font-weight:500;letter-spacing:.08em;color:#0f0e17;text-decoration:none;padding:.9rem 0;white-space:nowrap;flex-shrink:0;transition:color .2s}
+  .nav-home:hover{color:#1a6b6b}
+  #nav-links{list-style:none;display:flex;gap:0;margin:0}
+  #nav-links a{display:block;padding:.85rem 1.1rem;font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#0f0e17;text-decoration:none;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
+  #nav-links a:hover,#nav-links a[aria-current="page"]{color:#1a6b6b;border-bottom-color:#1a6b6b}
+  .nav-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:36px;height:36px;background:none;border:none;cursor:pointer;padding:4px;flex-shrink:0}
+  .nav-toggle span{display:block;width:22px;height:2px;background:#0f0e17;border-radius:2px;transition:transform .25s,opacity .25s}
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  @media(max-width:600px){
+    .nav-toggle{display:flex}
+    #nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#f0eddf;border-bottom:1px solid #d1c9b0;padding:.5rem 0}
+    #nav-links.open{display:flex}
+    #nav-links a{padding:.75rem 1.5rem;border-bottom:none;border-left:2px solid transparent}
+    #nav-links a:hover,#nav-links a[aria-current="page"]{border-bottom:none;border-left-color:#1a6b6b;background:rgba(26,107,107,.05)}
+  }
+  /* ── Breadcrumb ── */
+  .breadcrumb{background:#faf8f2;border-bottom:1px solid #d1c9b0}
+  .breadcrumb ol{max-width:900px;margin:0 auto;padding:.55rem 1.5rem;list-style:none;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+  .breadcrumb li{font-family:'DM Mono',monospace;font-size:.67rem;letter-spacing:.08em;color:#888;display:flex;align-items:center;gap:.4rem}
+  .breadcrumb li+li::before{content:'›';color:#bbb}
+  .breadcrumb a{color:#1a6b6b;text-decoration:none}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb [aria-current="page"]{color:#0f0e17;font-weight:500}
 </style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-<nav id="topbar"><a class="nb cur" style="color:#1A73E8" href="chapter01.html"><span class="nb-dot"></span>1. Words → Algebra</a><a class="nb" style="color:#0F9D58" href="chapter02.html"><span class="nb-dot"></span>2. Laws of Exponen…</a><a class="nb" style="color:#F4511E" href="chapter03.html"><span class="nb-dot"></span>3. Polynomials</a><a class="nb" style="color:#7B1FA2" href="chapter04.html"><span class="nb-dot"></span>4. Linear Equations</a><a class="nb" style="color:#00897B" href="chapter05.html"><span class="nb-dot"></span>5. Literal Equatio…</a><a class="nb" style="color:#D32F2F" href="chapter06.html"><span class="nb-dot"></span>6. Quadratic Expre…</a><a class="nb" style="color:#3949AB" href="chapter07.html"><span class="nb-dot"></span>7. Slope</a><a class="nb" style="color:#FF8F00" href="chapter08.html"><span class="nb-dot"></span>8. Domain</a><a class="nb" style="color:#E91E63" href="chapter09.html"><span class="nb-dot"></span>9. Functions</a><a class="nb" style="color:#00695C" href="chapter10.html"><span class="nb-dot"></span>10. Inequalities</a></nav>
-<div class="hero" data-bg="01">
-  <div class="hero-tag">Chapter 1 · Virginia SOL Algebra 1</div>
-  <h1>Words → Algebra</h1>
-  <p>Translating Verbal Expressions</p>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<nav id="site-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="../../index.html" class="nav-home">Dr. Neha Panchbhai</a>
+    <button class="nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <ul id="nav-links" role="list">
+      <li><a href="../index.html#courses" aria-current="page">Courses</a></li>
+      <li><a href="../index.html#presentations">Presentations</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+  </div>
+</nav>
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol><li><a href="../../index.html">Home</a></li><li><a href="../index.html">Algebra 1</a></li><li><a href="../sol-review.html">SOL Review</a></li><li><span aria-current="page">Literal Equations</span></li></ol>
+</nav>
+<nav id="topbar"><a class="nb" style="color:#1A73E8" href="chapter01.html"><span class="nb-dot"></span>1. Words → Algebra</a><a class="nb" style="color:#0F9D58" href="chapter02.html"><span class="nb-dot"></span>2. Laws of Exponen…</a><a class="nb" style="color:#F4511E" href="chapter03.html"><span class="nb-dot"></span>3. Polynomials</a><a class="nb" style="color:#7B1FA2" href="chapter04.html"><span class="nb-dot"></span>4. Linear Equations</a><a class="nb cur" style="color:#00897B" href="chapter05.html"><span class="nb-dot"></span>5. Literal Equatio…</a><a class="nb" style="color:#D32F2F" href="chapter06.html"><span class="nb-dot"></span>6. Quadratic Expre…</a><a class="nb" style="color:#3949AB" href="chapter07.html"><span class="nb-dot"></span>7. Slope</a><a class="nb" style="color:#FF8F00" href="chapter08.html"><span class="nb-dot"></span>8. Domain</a><a class="nb" style="color:#E91E63" href="chapter09.html"><span class="nb-dot"></span>9. Functions</a><a class="nb" style="color:#00695C" href="chapter10.html"><span class="nb-dot"></span>10. Inequalities</a></nav>
+<div class="hero" data-bg="05">
+  <div class="hero-tag">Chapter 5 · Virginia SOL Algebra 1</div>
+  <h1>Literal Equations</h1>
+  <p>Solving formulas for a variable</p>
 </div>
-<div class="wrap">
-<div class="cbox" style="--accent:#1A73E8;background:#e3f2fd">
-  <h3>🔤 Key Words &amp; Their Math Symbols</h3>
-  <ul><li><strong>ADDITION (+):</strong> sum, more than, increased by, plus, added to, total</li><li><strong>SUBTRACTION (−):</strong> difference, less than, decreased by, minus, fewer than</li><li><strong>MULTIPLICATION (×):</strong> product, times, of, multiplied by, twice (×2), triple (×3)</li><li><strong>DIVISION (÷):</strong> quotient, divided by, per, ratio, split equally</li><li><strong>EQUALS (=):</strong> is, equals, gives, results in, the same as</li><li><strong>VARIABLE:</strong> "a number" or "some number" → use <span class="mono">n</span> or <span class="mono">x</span></li></ul>
-</div><div class="grid g4"><div class="card" style="background:#0F9D58">
-  <h4>5 more than a number</h4><div class="expr">n + 5</div>
-  <ul><li>"More than" → add to n</li><li>Always write: n + 5</li></ul>
-</div><div class="card" style="background:#F4511E">
-  <h4>3 times a number</h4><div class="expr">3n</div>
-  <ul><li>"Times" → multiply</li><li>3 × n = 3n</li></ul>
+<div id="main-content" class="wrap">
+<div class="cbox" style="--accent:#00897B;background:#e0f2f1">
+  <h3>📖 What IS a Literal Equation?</h3>
+  <ul><li>A literal equation has MORE THAN ONE variable — like a formula you rearrange!</li><li>Examples: <span class='mono'>A = l×w</span> (area) &nbsp;|&nbsp; <span class='mono'>d = r×t</span> (distance) &nbsp;|&nbsp; <span class='mono'>y = mx+b</span> (slope) &nbsp;|&nbsp; <span class='mono'>C = (5/9)(F−32)</span> (temp)</li><li>Goal: get ONE specific variable ALONE on one side — like solving a puzzle backwards!</li></ul>
+</div><div class="grid g3"><div class="card" style="background:#00897B">
+  <h4>STEP 1: Identify</h4>
+  <ul><li>Find which variable</li><li>you are solving FOR</li><li>Circle it!</li><li>e.g. Solve for <strong>r</strong></li><li>in: d = r × t</li><li></li></ul>
+</div><div class="card" style="background:#1A73E8">
+  <h4>STEP 2: Isolate</h4>
+  <ul><li>Get that variable ALONE</li><li>Use OPPOSITE operations:</li><li>+ → subtract both sides</li><li>× → divide both sides</li><li>Work from OUTSIDE in!</li><li></li></ul>
+</div><div class="card" style="background:#0F9D58">
+  <h4>STEP 3: Check!</h4>
+  <ul><li>Plug NUMBERS in</li><li>to BOTH versions</li><li>Do you get same answer?</li><li>YES = you're correct!</li><li>NO = check your steps</li><li></li></ul>
+</div></div><div class="grid g4"><div class="card" style="background:#F4511E">
+  <h4>Solve d = rt  for r</h4>
+  <ul><li>d = r · t</li><li>Divide both sides by t:</li><li><strong>r = d/t</strong></li><li>Check: d=60,t=3 → r=20 ✓</li><li></li></ul>
 </div><div class="card" style="background:#7B1FA2">
-  <h4>A number divided by 4</h4><div class="expr">n ÷ 4</div>
-  <ul><li>"Divided by" → ÷</li><li>n / 4 or n ÷ 4</li></ul>
+  <h4>Solve A=(1/2)bh  for h</h4>
+  <ul><li>Multiply both sides by 2:</li><li>2A = b·h</li><li>Divide by b:</li><li><strong>h = 2A/b</strong></li><li></li></ul>
+</div><div class="card" style="background:#D32F2F">
+  <h4>Solve y=mx+b  for m</h4>
+  <ul><li>y = mx + b</li><li>Subtract b: y−b = mx</li><li>Divide by x:</li><li><strong>m = (y−b)/x</strong></li><li></li></ul>
 </div><div class="card" style="background:#00897B">
-  <h4>Twice a number minus 7</h4><div class="expr">2n − 7</div>
-  <ul><li>"Twice" = ×2</li><li>Then subtract 7</li></ul>
-</div></div><div class="cbox" style="--accent:#1A73E8;background:#f5f5f5">
-  <h3>✏️ Practice — Translate These!</h3>
-  <ul><li>"The sum of a number and 9" → <span class="mono">n + 9</span></li><li>"7 less than twice a number" → <span class="mono">2n − 7</span></li><li>"The product of 4 and a number, decreased by 3" → <span class="mono">4n − 3</span></li><li><strong>WATCH OUT:</strong> "less than" flips order! "3 less than n" = n − 3, NOT 3 − n</li></ul>
+  <h4>Solve P=2l+2w  for w</h4>
+  <ul><li>P = 2l + 2w</li><li>Subtract 2l: P−2l = 2w</li><li>Divide by 2:</li><li><strong>w = (P−2l)/2</strong></li><li></li></ul>
+</div></div><div class="callout" style="background:#fff9c4;border-left:4px solid #FF8F00">
+  <div class="callout-icon">⚖️</div>
+  <div class="callout-body">
+    <h4 style="color:#FF8F00">Balance Scale Rule</h4>
+    <ul>
+      <li>Whatever you do to ONE side, do the EXACT SAME to the OTHER side to keep it balanced!</li>
+      <li>Add to one side? Add same to other. &nbsp; Divide one side? Divide the other too.</li>
+      <li>This is the SECRET of all algebra — every step keeps the equation perfectly balanced!</li>
+    </ul>
+  </div>
 </div><div class="desmos">
   <div class="desmos-head">
     <h3>🔢 Desmos Strategies</h3>
@@ -273,30 +341,47 @@
   <div class="desmos-cols">
     <div class="dcol">
   <span class="dcol-badge" style="background:#1A73E8">Strategy 1: Evaluate / Find a Value</span>
-  <ul><li>Type problem with <strong>CAPITAL letters</strong></li><li>e.g. <span class='mono'>3*N - 7</span></li><li>Use <strong>slider for N</strong></li><li>Set N = your number</li><li>Desmos calculates the value!</li><li>CHECK: does it match the words?</li></ul>
+  <ul><li>CAPITAL letters to CHECK</li><li>Original: type <span class='mono'>D = R * T</span></li><li>Add sliders D, R, T</li><li>Set D=60, T=3 → R must = 20</li><li>Rearranged: type <span class='mono'>R = D/T</span></li><li>Set D=60,T=3 → also R=20! Match!</li></ul>
 </div>
     <div class="dcol">
   <span class="dcol-badge" style="background:#0F9D58">Strategy 2: Graph / Visualize</span>
-  <ul><li>Type <span class='mono'>y = 3*x - 7</span> (lowercase)</li><li>See the LINE for all values</li><li>Two expressions = same line?</li><li>YES → they are equivalent!</li><li>X-intercept = where y = 0</li><li>Use graph to verify translations</li></ul>
+  <ul><li>Graph both forms to VERIFY</li><li>type <span class='mono'>y = 2*x + 4</span> (original)</li><li>Solve for x: x=(y−4)/2</li><li>Intercepts reveal formula values</li><li>Mostly use Strategy 1 for literal eq.</li><li>Graph confirms correctness!</li></ul>
 </div>
     <div class="dcol">
   <span class="dcol-badge" style="background:#F4511E">Strategy 3: Generate Table</span>
-  <ul><li>Type <span class='mono'>y = 3*x - 7</span> in Desmos</li><li>Click the <strong>+ icon → Table</strong></li><li>Desmos fills in x &amp; y values</li><li>Pick any row to verify your</li><li>translation is correct!</li><li>Table confirms your algebra!</li></ul>
+  <ul><li>Use Table to verify formula</li><li>Test original AND rearranged</li><li>e.g. d=rt: r=3,t=4 → d=12</li><li>Rearranged r=d/t: d=12,t=4→r=3</li><li>Same values = formula is correct!</li><li>Table is your proof!</li></ul>
 </div>
   </div>
-</div><div class="remember" style="background:#1A73E8">
+</div><div class="remember" style="background:#00897B">
   <h3>Remember This!</h3>
-  <ul><li>"MORE THAN" flips order! "5 more than n" = n+5 &nbsp;|&nbsp; "LESS THAN" flips too! "3 less than n" = n−3 (NOT 3−n)</li><li>Always circle the KEY WORD first, then write the math symbol.</li><li>The VARIABLE goes where it says "a number" or "some number" in the sentence.</li></ul>
+  <ul><li>Work BACKWARDS! Last thing done = first thing to undo. Like unwrapping a present in reverse.</li><li>Whatever you do to one side, do the EXACT SAME to the other side. Every single time!</li><li>ALWAYS check with real numbers: plug into both forms of the equation to confirm they match.</li></ul>
 </div>
 </div>
 <footer>
-  <span style="color:#1A73E8;font-weight:700">Chapter 1 of 10</span>
+  <span style="color:#00897B;font-weight:700">Chapter 5 of 10</span>
   <div class="fp-nav">
-    <a href="index.html">🏠 Home</a>
-    <a href="#" class="disabled">← Prev</a>
-    <a href="chapter02.html" class="">Next →</a>
+    <a href="../index.html">🏠 Home</a>
+    <a href="chapter04.html" class="">← Prev</a>
+    <a href="chapter06.html" class="">Next →</a>
   </div>
   <span>Virginia SOL Algebra 1</span>
 </footer>
+  <script>
+    const toggle = document.querySelector('.nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    if (toggle && navLinks) {
+      toggle.addEventListener('click', () => {
+        const exp = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!exp));
+        toggle.setAttribute('aria-label', exp ? 'Open navigation menu' : 'Close navigation menu');
+        navLinks.classList.toggle('open', !exp);
+      });
+      navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open navigation menu');
+        navLinks.classList.remove('open');
+      }));
+    }
+  </script>
 </body>
 </html>

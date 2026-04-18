@@ -24,7 +24,7 @@
 
   /* ── Top nav bar ── */
   #topbar{
-    position:sticky;top:0;z-index:100;
+    position:sticky;top:48px;z-index:100;
     background:rgba(18,18,30,.96);backdrop-filter:blur(10px);
     border-bottom:2px solid rgba(255,255,255,.08);
     display:flex;align-items:center;height:56px;
@@ -237,16 +237,68 @@
   }
 
   :root{--accent:#E91E63;--c1:#E91E63;--c2:#880e4f}
+
+  /* ── Site-wide nav ── */
+  .skip-link{position:absolute;top:-100%;left:1rem;background:#d4900a;color:#0f0e17;font-family:'DM Mono',monospace;font-size:.75rem;font-weight:500;padding:.5em 1em;border-radius:0 0 4px 4px;text-decoration:none;z-index:300;transition:top .15s}
+  .skip-link:focus{top:0}
+  #site-nav{background:#f0eddf;border-bottom:1px solid #d1c9b0;position:sticky;top:0;z-index:200}
+  .nav-inner{max-width:900px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .nav-home{font-family:'DM Mono',monospace;font-size:.78rem;font-weight:500;letter-spacing:.08em;color:#0f0e17;text-decoration:none;padding:.9rem 0;white-space:nowrap;flex-shrink:0;transition:color .2s}
+  .nav-home:hover{color:#1a6b6b}
+  #nav-links{list-style:none;display:flex;gap:0;margin:0}
+  #nav-links a{display:block;padding:.85rem 1.1rem;font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#0f0e17;text-decoration:none;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
+  #nav-links a:hover,#nav-links a[aria-current="page"]{color:#1a6b6b;border-bottom-color:#1a6b6b}
+  .nav-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:36px;height:36px;background:none;border:none;cursor:pointer;padding:4px;flex-shrink:0}
+  .nav-toggle span{display:block;width:22px;height:2px;background:#0f0e17;border-radius:2px;transition:transform .25s,opacity .25s}
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  @media(max-width:600px){
+    .nav-toggle{display:flex}
+    #nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#f0eddf;border-bottom:1px solid #d1c9b0;padding:.5rem 0}
+    #nav-links.open{display:flex}
+    #nav-links a{padding:.75rem 1.5rem;border-bottom:none;border-left:2px solid transparent}
+    #nav-links a:hover,#nav-links a[aria-current="page"]{border-bottom:none;border-left-color:#1a6b6b;background:rgba(26,107,107,.05)}
+  }
+  /* ── Breadcrumb ── */
+  .breadcrumb{background:#faf8f2;border-bottom:1px solid #d1c9b0}
+  .breadcrumb ol{max-width:900px;margin:0 auto;padding:.55rem 1.5rem;list-style:none;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+  .breadcrumb li{font-family:'DM Mono',monospace;font-size:.67rem;letter-spacing:.08em;color:#888;display:flex;align-items:center;gap:.4rem}
+  .breadcrumb li+li::before{content:'›';color:#bbb}
+  .breadcrumb a{color:#1a6b6b;text-decoration:none}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb [aria-current="page"]{color:#0f0e17;font-weight:500}
 </style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<nav id="site-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="../../index.html" class="nav-home">Dr. Neha Panchbhai</a>
+    <button class="nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <ul id="nav-links" role="list">
+      <li><a href="../index.html#courses" aria-current="page">Courses</a></li>
+      <li><a href="../index.html#presentations">Presentations</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+  </div>
+</nav>
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol><li><a href="../../index.html">Home</a></li><li><a href="../index.html">Algebra 1</a></li><li><a href="../sol-review.html">SOL Review</a></li><li><span aria-current="page">Functions</span></li></ol>
+</nav>
 <nav id="topbar"><a class="nb" style="color:#1A73E8" href="chapter01.html"><span class="nb-dot"></span>1. Words → Algebra</a><a class="nb" style="color:#0F9D58" href="chapter02.html"><span class="nb-dot"></span>2. Laws of Exponen…</a><a class="nb" style="color:#F4511E" href="chapter03.html"><span class="nb-dot"></span>3. Polynomials</a><a class="nb" style="color:#7B1FA2" href="chapter04.html"><span class="nb-dot"></span>4. Linear Equations</a><a class="nb" style="color:#00897B" href="chapter05.html"><span class="nb-dot"></span>5. Literal Equatio…</a><a class="nb" style="color:#D32F2F" href="chapter06.html"><span class="nb-dot"></span>6. Quadratic Expre…</a><a class="nb" style="color:#3949AB" href="chapter07.html"><span class="nb-dot"></span>7. Slope</a><a class="nb" style="color:#FF8F00" href="chapter08.html"><span class="nb-dot"></span>8. Domain</a><a class="nb cur" style="color:#E91E63" href="chapter09.html"><span class="nb-dot"></span>9. Functions</a><a class="nb" style="color:#00695C" href="chapter10.html"><span class="nb-dot"></span>10. Inequalities</a></nav>
 <div class="hero" data-bg="09">
   <div class="hero-tag">Chapter 9 · Virginia SOL Algebra 1</div>
   <h1>Functions</h1>
   <p>Linear, Quadratic, Exponential</p>
 </div>
-<div class="wrap">
+<div id="main-content" class="wrap">
 <div class="cbox" style="--accent:#E91E63;background:#fce4ec">
   <h3>🤔 Is it a FUNCTION? → The VERTICAL LINE TEST</h3>
   <ul><li>A function: every x-value has <strong>EXACTLY ONE</strong> y-value (one input → one output, no splitting!)</li><li><strong>TEST:</strong> draw a vertical line on the graph. Hits curve MORE than once? → NOT a function!</li><li><strong>Mapping:</strong> each input arrow points to EXACTLY ONE output. One input, two outputs = NOT a function!</li></ul>
@@ -334,11 +386,28 @@
 <footer>
   <span style="color:#E91E63;font-weight:700">Chapter 9 of 10</span>
   <div class="fp-nav">
-    <a href="index.html">🏠 Home</a>
+    <a href="../index.html">🏠 Home</a>
     <a href="chapter08.html" class="">← Prev</a>
     <a href="chapter10.html" class="">Next →</a>
   </div>
   <span>Virginia SOL Algebra 1</span>
 </footer>
+  <script>
+    const toggle = document.querySelector('.nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    if (toggle && navLinks) {
+      toggle.addEventListener('click', () => {
+        const exp = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!exp));
+        toggle.setAttribute('aria-label', exp ? 'Open navigation menu' : 'Close navigation menu');
+        navLinks.classList.toggle('open', !exp);
+      });
+      navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open navigation menu');
+        navLinks.classList.remove('open');
+      }));
+    }
+  </script>
 </body>
 </html>

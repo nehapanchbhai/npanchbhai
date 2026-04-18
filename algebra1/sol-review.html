@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Algebra 1 SOL Review — All Chapters</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap');
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Nunito',sans-serif;background:#eef0f4;color:#2d2d2d;min-height:100vh}
+  a{text-decoration:none;color:inherit}
+
+  .hero{
+    background:linear-gradient(135deg,#12122e 0%,#1a1a3e 45%,#0f2d5c 100%);
+    padding:60px 32px 50px;text-align:center;position:relative;overflow:hidden;
+  }
+  .hero::before{
+    content:'';position:absolute;inset:0;
+    background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-badge{
+    display:inline-block;
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
+    border-radius:50px;padding:6px 20px;font-size:11px;font-weight:800;
+    letter-spacing:2px;text-transform:uppercase;color:#fff;margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(28px,5vw,52px);font-weight:900;line-height:1.1;margin-bottom:12px;
+    background:linear-gradient(135deg,#fff 0%,#a8d8f0 100%);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  }
+  .hero p{font-size:16px;opacity:.72;max-width:550px;margin:0 auto 28px;line-height:1.6}
+  .hero-meta{
+    display:inline-flex;gap:24px;
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+    border-radius:12px;padding:12px 24px;
+  }
+  .meta-item{color:rgba(255,255,255,.8);font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px}
+  .meta-dot{width:8px;height:8px;border-radius:50%;background:currentColor}
+
+  .grid-wrap{max-width:900px;margin:0 auto;padding:36px 20px 60px}
+  .section-label{
+    font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;
+    color:#888;margin-bottom:16px;padding-left:4px;
+  }
+  .ch-grid{display:flex;flex-direction:column;gap:10px}
+
+  .ch-card{
+    display:flex;align-items:center;gap:0;
+    background:#fff;border-radius:14px;
+    box-shadow:0 3px 14px rgba(0,0,0,.09);
+    overflow:hidden;
+    transition:transform .18s, box-shadow .18s;
+    border-left:6px solid var(--c1);
+  }
+  .ch-card:hover{transform:translateX(6px) translateY(-1px);box-shadow:0 6px 28px rgba(0,0,0,.14)}
+  .ch-num{
+    min-width:70px;height:72px;
+    background:linear-gradient(135deg,var(--c1),var(--c2));
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Space Mono',monospace;font-size:22px;font-weight:700;color:#fff;
+    flex-shrink:0;
+  }
+  .ch-info{flex:1;padding:14px 18px}
+  .ch-title{font-size:16px;font-weight:800;margin-bottom:3px;color:#1a1a2e}
+  .ch-sub{font-size:12.5px;color:#777;font-weight:600}
+  .ch-arrow{
+    padding:0 20px;font-size:20px;color:var(--c1);font-weight:900;
+    opacity:.5;transition:opacity .15s, transform .15s;
+  }
+  .ch-card:hover .ch-arrow{opacity:1;transform:translateX(4px)}
+
+  .tip-box{
+    background:linear-gradient(135deg,#6A1B9A,#4a0072);
+    border-radius:14px;padding:20px 24px;margin-top:28px;
+    box-shadow:0 4px 20px rgba(106,27,154,.25);
+  }
+  .tip-box h3{color:#fff;font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+  .tip-box .tips{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .tip{background:rgba(255,255,255,.1);border-radius:10px;padding:12px 14px}
+  .tip .tip-label{
+    display:inline-block;font-size:10px;font-weight:800;text-transform:uppercase;
+    letter-spacing:.8px;padding:3px 8px;border-radius:4px;color:#fff;margin-bottom:7px;
+  }
+  .tip p{font-size:12.5px;color:rgba(255,255,255,.85);line-height:1.6}
+
+  @media(max-width:600px){
+    .tips{grid-template-columns:1fr}
+    .hero{padding:40px 18px 36px}
+    .hero-meta{flex-direction:column;gap:10px;padding:10px 16px}
+    .ch-num{min-width:54px;height:58px;font-size:18px}
+    .ch-title{font-size:14px}
+  }
+
+  /* ── Site-wide nav ── */
+  .skip-link{position:absolute;top:-100%;left:1rem;background:#d4900a;color:#0f0e17;font-family:'DM Mono',monospace;font-size:.75rem;font-weight:500;padding:.5em 1em;border-radius:0 0 4px 4px;text-decoration:none;z-index:300;transition:top .15s}
+  .skip-link:focus{top:0}
+  #site-nav{background:#f0eddf;border-bottom:1px solid #d1c9b0;position:sticky;top:0;z-index:200}
+  .nav-inner{max-width:900px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .nav-home{font-family:'DM Mono',monospace;font-size:.78rem;font-weight:500;letter-spacing:.08em;color:#0f0e17;text-decoration:none;padding:.9rem 0;white-space:nowrap;flex-shrink:0;transition:color .2s}
+  .nav-home:hover{color:#1a6b6b}
+  #nav-links{list-style:none;display:flex;gap:0;margin:0}
+  #nav-links a{display:block;padding:.85rem 1.1rem;font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#0f0e17;text-decoration:none;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
+  #nav-links a:hover,#nav-links a[aria-current="page"]{color:#1a6b6b;border-bottom-color:#1a6b6b}
+  .nav-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:36px;height:36px;background:none;border:none;cursor:pointer;padding:4px;flex-shrink:0}
+  .nav-toggle span{display:block;width:22px;height:2px;background:#0f0e17;border-radius:2px;transition:transform .25s,opacity .25s}
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  @media(max-width:600px){
+    .nav-toggle{display:flex}
+    #nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#f0eddf;border-bottom:1px solid #d1c9b0;padding:.5rem 0}
+    #nav-links.open{display:flex}
+    #nav-links a{padding:.75rem 1.5rem;border-bottom:none;border-left:2px solid transparent}
+    #nav-links a:hover,#nav-links a[aria-current="page"]{border-bottom:none;border-left-color:#1a6b6b;background:rgba(26,107,107,.05)}
+  }
+  /* ── Breadcrumb ── */
+  .breadcrumb{background:#faf8f2;border-bottom:1px solid #d1c9b0}
+  .breadcrumb ol{max-width:900px;margin:0 auto;padding:.55rem 1.5rem;list-style:none;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+  .breadcrumb li{font-family:'DM Mono',monospace;font-size:.67rem;letter-spacing:.08em;color:#888;display:flex;align-items:center;gap:.4rem}
+  .breadcrumb li+li::before{content:'›';color:#bbb}
+  .breadcrumb a{color:#1a6b6b;text-decoration:none}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb [aria-current="page"]{color:#0f0e17;font-weight:500}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<nav id="site-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-home">Dr. Neha Panchbhai</a>
+    <button class="nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <ul id="nav-links" role="list">
+      <li><a href="../index.html#courses" aria-current="page">Courses</a></li>
+      <li><a href="../index.html#presentations">Presentations</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+  </div>
+</nav>
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol><li><a href="../index.html">Home</a></li><li><a href="index.html">Algebra 1</a></li><li><span aria-current="page">SOL Review</span></li></ol>
+</nav>
+<div id="main-content" class="hero">
+  <div class="hero-badge">Virginia SOL · Algebra 1 Review</div>
+  <h1>Study Smart!<br>10 Chapter Review</h1>
+  <p>Pick a chapter below. Each page has visual explanations, worked examples, and 3 Desmos strategies to get every answer right.</p>
+  <div class="hero-meta">
+    <div class="meta-item" style="color:#1A73E8"><div class="meta-dot"></div>10 Chapters</div>
+    <div class="meta-item" style="color:#0F9D58"><div class="meta-dot"></div>30 Desmos Tips</div>
+    <div class="meta-item" style="color:#F4511E"><div class="meta-dot"></div>SOL Aligned</div>
+  </div>
+</div>
+
+<div class="grid-wrap">
+  <p class="section-label">Select a chapter to study</p>
+  <div class="ch-grid">
+    
+<a class="ch-card" href="sol-review/chapter01.html" style="--c1:#1A73E8;--c2:#0d47a1">
+  <div class="ch-num">01</div>
+  <div class="ch-info">
+    <div class="ch-title">Words → Algebra</div>
+    <div class="ch-sub">Translating Verbal Expressions</div>
+  </div>
+  <div class="ch-arrow">→</div>
+</a>
+<a class="ch-card" href="sol-review/chapter02.html" style="--c1:#0F9D58;--c2:#1b5e20">
+  <div class="ch-num">02</div>
+  <div class="ch-info">
+    <div class="ch-title">Laws of Exponents</div>
+    <div class="ch-sub">Rules for powers</div>
+  </div>
+  <div class="ch-arrow">→</div>
+</a>
+<a class="ch-card" href="sol-review/chapter03.html" style="--c1:#F4511E;--c2:#bf360c">
+  <div class="ch-num">03</div>
+  <div class="ch-info">
+    <div class="ch-title">Polynomials</div>
+    <div class="ch-sub">Add, Subtract, FOIL, Factor</div>
+  </div>
+  <div class="ch-arrow">→</div>
+</a>
+<a class="ch-card" href="sol-review/chapter04.html" style="--c1:#7B1FA2;--c2:#4a148c">
+  <div class="ch-num">04</div>
+  <div class="ch-info">
+    <div class="ch-title">Linear Equations & Graphing</div>
+    <div class="ch-sub">Slope, equations, graphing lines</div>
+  </div>
+  <div class="ch-arrow">→</div>
+</a>
+<a class="ch-card" href="sol-review/chapter05.html" style="--c1:#00897B;--c2:#004d40">
+  <div class="ch-num">05</div>
+  <div class="ch-info">
+    <div class="ch-title">Literal Equations</div>
+    <div class="ch-sub">Solving formulas for a variable</div>
+  </div>
+  <div class="ch-arrow">→</div>
+</a>
+<a class="ch-card" href="sol-review/chapter06.html" style="--c1:#D32F2F;--c2:#7f0000">
+  <div class="ch-num">06</div>
+  <div class="ch-info">
+    <div class="ch-title">Quadratic Expressions</div>
+    <div class="ch-sub">Vertex, roots, intercepts, factoring</div>
+  </div>
+  <div class="ch-arrow">→</div>
+</a>
+<a class="ch-card" href="sol-review/chapter07.html" style="--c1:#3949AB;--c2:#1a237e">
+  <div class="ch-num">07</div>
+  <div class="ch-info">
+    <div class="ch-title">Slope & Slope-Intercept</div>
+    <div class="ch-sub">y = mx + b — the key formula</div>
+  </div>
+  <div class="ch-arrow">→</div>
+</a>
+<a class="ch-card" href="sol-review/chapter08.html" style="--c1:#FF8F00;--c2:#e65100">
+  <div class="ch-num">08</div>
+  <div class="ch-info">
+    <div class="ch-title">Domain & Range</div>
+    <div class="ch-sub">Inputs and outputs of functions</div>
+  </div>
+  <div class="ch-arrow">→</div>
+</a>
+<a class="ch-card" href="sol-review/chapter09.html" style="--c1:#E91E63;--c2:#880e4f">
+  <div class="ch-num">09</div>
+  <div class="ch-info">
+    <div class="ch-title">Functions</div>
+    <div class="ch-sub">Linear, Quadratic, Exponential</div>
+  </div>
+  <div class="ch-arrow">→</div>
+</a>
+<a class="ch-card" href="sol-review/chapter10.html" style="--c1:#00695C;--c2:#004d40">
+  <div class="ch-num">10</div>
+  <div class="ch-info">
+    <div class="ch-title">Inequalities</div>
+    <div class="ch-sub">Graph, solve, find solution sets</div>
+  </div>
+  <div class="ch-arrow">→</div>
+</a>
+  </div>
+
+  <div class="tip-box">
+    <h3>🔢 Your 3 Desmos Strategies — On Every Page!</h3>
+    <div class="tips">
+      <div class="tip">
+        <span class="tip-label" style="background:#1A73E8">Strategy 1: Evaluate</span>
+        <p>Type with CAPITAL letters + sliders → replace variables → find the value</p>
+      </div>
+      <div class="tip">
+        <span class="tip-label" style="background:#0F9D58">Strategy 2: Graph</span>
+        <p>Type in lowercase x &amp; y → observe the graph → x-intercepts are the answers</p>
+      </div>
+      <div class="tip">
+        <span class="tip-label" style="background:#F4511E">Strategy 3: Table</span>
+        <p>Generate a table of values → get points → find slope or equation</p>
+      </div>
+    </div>
+  </div>
+</div>
+  <script>
+    const toggle = document.querySelector('.nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    if (toggle && navLinks) {
+      toggle.addEventListener('click', () => {
+        const exp = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!exp));
+        toggle.setAttribute('aria-label', exp ? 'Open navigation menu' : 'Close navigation menu');
+        navLinks.classList.toggle('open', !exp);
+      });
+      navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open navigation menu');
+        navLinks.classList.remove('open');
+      }));
+    }
+  </script>
+</body>
+</html>

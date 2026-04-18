@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ch 6: Quadratic Expressions — Algebra 1 SOL</title>
+<title>Ch 2: Laws of Exponents — Algebra 1 SOL</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap');
 
@@ -24,7 +24,7 @@
 
   /* ── Top nav bar ── */
   #topbar{
-    position:sticky;top:0;z-index:100;
+    position:sticky;top:48px;z-index:100;
     background:rgba(18,18,30,.96);backdrop-filter:blur(10px);
     border-bottom:2px solid rgba(255,255,255,.08);
     display:flex;align-items:center;height:56px;
@@ -236,54 +236,91 @@
     .g4,.g3,.g2{grid-template-columns:1fr}
   }
 
-  :root{--accent:#D32F2F;--c1:#D32F2F;--c2:#7f0000}
+  :root{--accent:#0F9D58;--c1:#0F9D58;--c2:#1b5e20}
+
+  /* ── Site-wide nav ── */
+  .skip-link{position:absolute;top:-100%;left:1rem;background:#d4900a;color:#0f0e17;font-family:'DM Mono',monospace;font-size:.75rem;font-weight:500;padding:.5em 1em;border-radius:0 0 4px 4px;text-decoration:none;z-index:300;transition:top .15s}
+  .skip-link:focus{top:0}
+  #site-nav{background:#f0eddf;border-bottom:1px solid #d1c9b0;position:sticky;top:0;z-index:200}
+  .nav-inner{max-width:900px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .nav-home{font-family:'DM Mono',monospace;font-size:.78rem;font-weight:500;letter-spacing:.08em;color:#0f0e17;text-decoration:none;padding:.9rem 0;white-space:nowrap;flex-shrink:0;transition:color .2s}
+  .nav-home:hover{color:#1a6b6b}
+  #nav-links{list-style:none;display:flex;gap:0;margin:0}
+  #nav-links a{display:block;padding:.85rem 1.1rem;font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#0f0e17;text-decoration:none;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
+  #nav-links a:hover,#nav-links a[aria-current="page"]{color:#1a6b6b;border-bottom-color:#1a6b6b}
+  .nav-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:36px;height:36px;background:none;border:none;cursor:pointer;padding:4px;flex-shrink:0}
+  .nav-toggle span{display:block;width:22px;height:2px;background:#0f0e17;border-radius:2px;transition:transform .25s,opacity .25s}
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  @media(max-width:600px){
+    .nav-toggle{display:flex}
+    #nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#f0eddf;border-bottom:1px solid #d1c9b0;padding:.5rem 0}
+    #nav-links.open{display:flex}
+    #nav-links a{padding:.75rem 1.5rem;border-bottom:none;border-left:2px solid transparent}
+    #nav-links a:hover,#nav-links a[aria-current="page"]{border-bottom:none;border-left-color:#1a6b6b;background:rgba(26,107,107,.05)}
+  }
+  /* ── Breadcrumb ── */
+  .breadcrumb{background:#faf8f2;border-bottom:1px solid #d1c9b0}
+  .breadcrumb ol{max-width:900px;margin:0 auto;padding:.55rem 1.5rem;list-style:none;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+  .breadcrumb li{font-family:'DM Mono',monospace;font-size:.67rem;letter-spacing:.08em;color:#888;display:flex;align-items:center;gap:.4rem}
+  .breadcrumb li+li::before{content:'›';color:#bbb}
+  .breadcrumb a{color:#1a6b6b;text-decoration:none}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb [aria-current="page"]{color:#0f0e17;font-weight:500}
 </style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-<nav id="topbar"><a class="nb" style="color:#1A73E8" href="chapter01.html"><span class="nb-dot"></span>1. Words → Algebra</a><a class="nb" style="color:#0F9D58" href="chapter02.html"><span class="nb-dot"></span>2. Laws of Exponen…</a><a class="nb" style="color:#F4511E" href="chapter03.html"><span class="nb-dot"></span>3. Polynomials</a><a class="nb" style="color:#7B1FA2" href="chapter04.html"><span class="nb-dot"></span>4. Linear Equations</a><a class="nb" style="color:#00897B" href="chapter05.html"><span class="nb-dot"></span>5. Literal Equatio…</a><a class="nb cur" style="color:#D32F2F" href="chapter06.html"><span class="nb-dot"></span>6. Quadratic Expre…</a><a class="nb" style="color:#3949AB" href="chapter07.html"><span class="nb-dot"></span>7. Slope</a><a class="nb" style="color:#FF8F00" href="chapter08.html"><span class="nb-dot"></span>8. Domain</a><a class="nb" style="color:#E91E63" href="chapter09.html"><span class="nb-dot"></span>9. Functions</a><a class="nb" style="color:#00695C" href="chapter10.html"><span class="nb-dot"></span>10. Inequalities</a></nav>
-<div class="hero" data-bg="06">
-  <div class="hero-tag">Chapter 6 · Virginia SOL Algebra 1</div>
-  <h1>Quadratic Expressions</h1>
-  <p>Vertex, roots, intercepts, factoring</p>
-</div>
-<div class="wrap">
-<div class="cbox" style="--accent:#D32F2F;background:#ffebee">
-  <h3>🔍 Identifying a Quadratic → ax² + bx + c</h3>
-  <ul><li>Highest power is <strong>x²</strong> (x-squared). Graph = <strong>PARABOLA</strong> (U-shape or upside-down U-shape).</li><li>a &gt; 0 (positive) → opens <strong>UP</strong> (min point at bottom) &nbsp;|&nbsp; a &lt; 0 (negative) → opens <strong>DOWN</strong> (max at top)</li></ul>
-</div><div class="grid g4"><div class="card" style="background:#D32F2F">
-  <h4>🎯 VERTEX (Max or Min)</h4>
-  <ul><li>Tip-top or bottom point</li><li>Formula: x = −b / (2a)</li><li>Then plug x in to get y!</li><li>e.g. y = x²−4x+3:</li><li>x = 4/(2·1) = 2</li><li>y=4−8+3=−1 → (2,−1)</li></ul>
-</div><div class="card" style="background:#1A73E8">
-  <h4>📍 X-INTERCEPTS (Roots)</h4>
-  <ul><li>Where parabola hits x-axis</li><li>Set y = 0 then FACTOR:</li><li>x²−4x+3 = 0</li><li>(x−1)(x−3) = 0</li><li>x = 1  or  x = 3</li><li>Two x-intercepts!</li></ul>
-</div><div class="card" style="background:#0F9D58">
-  <h4>📌 Y-INTERCEPT</h4>
-  <ul><li>Where parabola hits y-axis</li><li>Set x = 0:</li><li>y = a(0)+b(0)+c</li><li>y = c (last number!)</li><li>e.g. y=3x²+5x+7:</li><li>y-intercept = 7 → (0,7)</li></ul>
-</div><div class="card" style="background:#7B1FA2">
-  <h4>🧮 HOW MANY REAL ROOTS?</h4>
-  <ul><li>Use DISCRIMINANT: b²−4ac</li><li>If &gt; 0 → TWO real roots</li><li>If = 0 → ONE real root</li><li>If &lt; 0 → NO real roots</li><li>(parabola misses x-axis)</li><li>Check on Desmos graph!</li></ul>
-</div></div><div class="two-col">
-  <div style="background:#f3e5f5;border-radius:12px;padding:18px;box-shadow:0 4px 16px rgba(0,0,0,.08)">
-    <p style="font-size:13px;font-weight:800;color:#7B1FA2;margin-bottom:10px">📊 PARABOLA DIAGRAM</p>
-    <svg viewBox="0 0 300 190" style="width:100%;display:block">
-      <line x1="10" y1="95" x2="290" y2="95" stroke="#aaa" stroke-width="1.5"/>
-      <line x1="150" y1="10" x2="150" y2="185" stroke="#aaa" stroke-width="1.5"/>
-      <path d="M 40,175 Q 150,20 260,175" stroke="#7B1FA2" stroke-width="3.5" fill="none"/>
-      <circle cx="78"  cy="145" r="6" fill="#1A73E8"/>
-      <circle cx="222" cy="145" r="6" fill="#1A73E8"/>
-      <circle cx="150" cy="20"  r="6" fill="#D32F2F"/>
-      <circle cx="150" cy="100" r="6" fill="#0F9D58"/>
-      <text x="55"  y="165" font-size="12" fill="#1A73E8" font-weight="700">x-intercepts (roots)</text>
-      <text x="156" y="19"  font-size="12" fill="#D32F2F" font-weight="700">Vertex</text>
-      <text x="156" y="116" font-size="12" fill="#0F9D58" font-weight="700">y-int</text>
-      <text x="14"  y="28"  font-size="12" fill="#7B1FA2" font-weight="700">y = x² − 4x + 3</text>
-    </svg>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<nav id="site-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="../../index.html" class="nav-home">Dr. Neha Panchbhai</a>
+    <button class="nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <ul id="nav-links" role="list">
+      <li><a href="../index.html#courses" aria-current="page">Courses</a></li>
+      <li><a href="../index.html#presentations">Presentations</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
   </div>
-  <div class="cbox" style="--accent:#F4511E;background:#fff8e1">
-  <h3>✂️ Factoring x² + bx + c</h3>
-  <ul><li>Find 2 numbers that <strong>MULTIPLY to c</strong> AND <strong>ADD to b</strong></li><li>x² + 5x + 6: need ×=6 AND +=5 → <span class='mono'>2 and 3</span> → (x+2)(x+3)</li><li>x² − 4x + 3: need ×=3 AND +=−4 → <span class='mono'>−1 and −3</span> → (x−1)(x−3)</li><li>Roots: x=1 and x=3</li><li>Always CHECK by re-expanding using FOIL!</li></ul>
+</nav>
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol><li><a href="../../index.html">Home</a></li><li><a href="../index.html">Algebra 1</a></li><li><a href="../sol-review.html">SOL Review</a></li><li><span aria-current="page">Laws of Exponents</span></li></ol>
+</nav>
+<nav id="topbar"><a class="nb" style="color:#1A73E8" href="chapter01.html"><span class="nb-dot"></span>1. Words → Algebra</a><a class="nb cur" style="color:#0F9D58" href="chapter02.html"><span class="nb-dot"></span>2. Laws of Exponen…</a><a class="nb" style="color:#F4511E" href="chapter03.html"><span class="nb-dot"></span>3. Polynomials</a><a class="nb" style="color:#7B1FA2" href="chapter04.html"><span class="nb-dot"></span>4. Linear Equations</a><a class="nb" style="color:#00897B" href="chapter05.html"><span class="nb-dot"></span>5. Literal Equatio…</a><a class="nb" style="color:#D32F2F" href="chapter06.html"><span class="nb-dot"></span>6. Quadratic Expre…</a><a class="nb" style="color:#3949AB" href="chapter07.html"><span class="nb-dot"></span>7. Slope</a><a class="nb" style="color:#FF8F00" href="chapter08.html"><span class="nb-dot"></span>8. Domain</a><a class="nb" style="color:#E91E63" href="chapter09.html"><span class="nb-dot"></span>9. Functions</a><a class="nb" style="color:#00695C" href="chapter10.html"><span class="nb-dot"></span>10. Inequalities</a></nav>
+<div class="hero" data-bg="02">
+  <div class="hero-tag">Chapter 2 · Virginia SOL Algebra 1</div>
+  <h1>Laws of Exponents</h1>
+  <p>Rules for powers</p>
 </div>
-</div><div class="desmos">
+<div id="main-content" class="wrap">
+<div class="cbox" style="--accent:#0F9D58;background:#e8f5e9">
+  <h3>🧱 What IS an Exponent?</h3>
+  <ul><li><span class='mono'>x³</span> means x × x × x (multiply x by itself 3 times). BIG number = BASE. Small raised = EXPONENT.</li><li><span class='mono'>2⁴ = 2×2×2×2 = 16</span> &nbsp;|&nbsp; <strong>x⁰ = 1 ALWAYS!</strong> &nbsp;|&nbsp; x¹ = x &nbsp;|&nbsp; x⁻² = 1/x² (flip it!)</li></ul>
+</div><div class="grid g3"><div class="card" style="background:#0F9D58">
+  <h4>MULTIPLY Same Base</h4><div class="expr">xᵃ · xᵇ = xᵃ⁺ᵇ</div>
+  <ul><li>ADD the exponents</li><li>x³ · x² = x⁵</li></ul>
+</div><div class="card" style="background:#1A73E8">
+  <h4>DIVIDE Same Base</h4><div class="expr">xᵃ ÷ xᵇ = xᵃ⁻ᵇ</div>
+  <ul><li>SUBTRACT exponents</li><li>x⁵ ÷ x² = x³</li></ul>
+</div><div class="card" style="background:#F4511E">
+  <h4>POWER of a Power</h4><div class="expr">(xᵃ)ᵇ = xᵃˣᵇ</div>
+  <ul><li>MULTIPLY exponents</li><li>(x³)² = x⁶</li></ul>
+</div><div class="card" style="background:#7B1FA2">
+  <h4>ZERO Exponent</h4><div class="expr">x⁰ = 1</div>
+  <ul><li>ALWAYS equals 1</li><li>99⁰ = 1</li></ul>
+</div><div class="card" style="background:#D32F2F">
+  <h4>NEGATIVE Exponent</h4><div class="expr">x⁻ᵃ = 1/xᵃ</div>
+  <ul><li>Flip to the bottom!</li><li>x⁻² = 1/x²</li></ul>
+</div><div class="card" style="background:#00897B">
+  <h4>POWER of Product</h4><div class="expr">(xy)ᵃ = xᵃyᵃ</div>
+  <ul><li>Spread the power</li><li>(2x)³ = 8x³</li></ul>
+</div></div><div class="desmos">
   <div class="desmos-head">
     <h3>🔢 Desmos Strategies</h3>
     <span>3 Ways to Get the Answer!</span>
@@ -291,30 +328,47 @@
   <div class="desmos-cols">
     <div class="dcol">
   <span class="dcol-badge" style="background:#1A73E8">Strategy 1: Evaluate / Find a Value</span>
-  <ul><li>Type with <strong>CAPITAL letters</strong></li><li>Type <span class='mono'>A*X^2 + B*X + C</span></li><li>Add sliders A, B, C</li><li>Set values to your problem</li><li>See vertex coordinates</li><li>Discriminant: check B²−4·A·C</li></ul>
+  <ul><li>Type with <strong>CAPITAL letters</strong></li><li>e.g. <span class='mono'>2^A * 2^B</span></li><li>Add sliders for A and B</li><li>Set A=3, B=2 → answer = 32</li><li>Then type <span class='mono'>2^(A+B)</span> → also 32</li><li>Same value = law is correct!</li></ul>
 </div>
     <div class="dcol">
   <span class="dcol-badge" style="background:#0F9D58">Strategy 2: Graph / Visualize</span>
-  <ul><li>Type <span class='mono'>y = x^2-4*x+3</span></li><li>Parabola appears instantly!</li><li>VERTEX: click the bottom point</li><li>X-INTERCEPTS: click where it</li><li>  crosses the x-axis (the roots!)</li><li>Y-INTERCEPT: click y-axis crossing</li></ul>
+  <ul><li>Type in lowercase to graph</li><li><span class='mono'>y = 2^x</span> (exponential curve)</li><li><span class='mono'>y = x^2</span> (parabola)</li><li>Compare their shapes!</li><li>See how fast each grows</li><li>Observe x-intercepts</li></ul>
 </div>
     <div class="dcol">
   <span class="dcol-badge" style="background:#F4511E">Strategy 3: Generate Table</span>
-  <ul><li>Type <span class='mono'>y = x^2−4*x+3</span> → Table</li><li>Find rows where <strong>y = 0</strong></li><li>Those x-values = ROOTS!</li><li>Find minimum y = vertex!</li><li>x=0 row → y-value = y-intercept!</li><li>Table gives ALL key features!</li></ul>
+  <ul><li>Type <span class='mono'>y = 2^x</span> → click Table</li><li>See how y DOUBLES each step</li><li>x: 0,1,2,3 → y: 1,2,4,8</li><li>Confirm simplified answer</li><li>by checking table values match</li><li>original expression values!</li></ul>
 </div>
   </div>
-</div><div class="remember" style="background:#D32F2F">
+</div><div class="remember" style="background:#0F9D58">
   <h3>Remember This!</h3>
-  <ul><li>Y-intercept = the c value (last number). Just set x=0! &nbsp; Discriminant = b²−4ac (tells number of roots)</li><li>Positive discriminant → 2 roots. &nbsp; Zero → 1 root. &nbsp; Negative → no real roots (parabola misses x-axis).</li><li>Vertex x = −b/(2a). Plug back in to get vertex y. Vertex is the MAX or MIN of the parabola.</li></ul>
+  <ul><li>Rules ONLY work with SAME base: x³ · x² = x⁵  BUT  x³ · y² CANNOT be combined!</li><li>ADDING exponents (x² + x³) does NOT simplify — only MULTIPLYING uses the laws!</li><li>Any number to the power 0 = 1.  Negative exponent = flip the base to the bottom (reciprocal).</li></ul>
 </div>
 </div>
 <footer>
-  <span style="color:#D32F2F;font-weight:700">Chapter 6 of 10</span>
+  <span style="color:#0F9D58;font-weight:700">Chapter 2 of 10</span>
   <div class="fp-nav">
-    <a href="index.html">🏠 Home</a>
-    <a href="chapter05.html" class="">← Prev</a>
-    <a href="chapter07.html" class="">Next →</a>
+    <a href="../index.html">🏠 Home</a>
+    <a href="chapter01.html" class="">← Prev</a>
+    <a href="chapter03.html" class="">Next →</a>
   </div>
   <span>Virginia SOL Algebra 1</span>
 </footer>
+  <script>
+    const toggle = document.querySelector('.nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    if (toggle && navLinks) {
+      toggle.addEventListener('click', () => {
+        const exp = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!exp));
+        toggle.setAttribute('aria-label', exp ? 'Open navigation menu' : 'Close navigation menu');
+        navLinks.classList.toggle('open', !exp);
+      });
+      navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open navigation menu');
+        navLinks.classList.remove('open');
+      }));
+    }
+  </script>
 </body>
 </html>
